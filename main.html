@@ -1,0 +1,247 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script src="scripts/utils.js"></script>
+  <style>
+    canvas{
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
+
+</head>
+
+
+<body>
+    <div style="width:75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <br>
+    <br>
+    <button id="randomizeData">Randomize Data</button>
+    <button id="addDataset">Add Dataset</button>
+    <button id="removeDataset">Remove Dataset</button>
+    <button id="addData">Add Data</button>
+    <button id="removeData">Remove Data</button>
+    <script>
+    var data;
+    var file;
+    var interval = 100;//ms
+
+        var MONTHS = [];
+        var config = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Chart.js Line Chart'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tempo[ms]'
+                        }
+                    }],
+                    yAxes: [{
+                      ticks: {
+            min: -1.1,
+            max: 1.1,
+            stepSize: 0.1
+        },
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Ampiezza'
+                        }
+                    }]
+                }
+            }
+        };
+
+        window.onload = function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myLine = new Chart(ctx, config);
+        };
+
+        document.getElementById('randomizeData').addEventListener('click', function() {
+            config.data.datasets.forEach(function(dataset) {
+                dataset.data = dataset.data.map(function() {
+                    return randomScalingFactor();
+                });
+
+            });
+
+            window.myLine.update();
+        });
+
+        var colorNames = Object.keys(window.chartColors);
+        document.getElementById('addDataset').addEventListener('click', function() {
+            var colorName = colorNames[config.data.datasets.length % colorNames.length];
+            var newColor = window.chartColors[colorName];
+            var newDataset = {
+                label: 'Dataset ' + config.data.datasets.length,
+                backgroundColor: newColor,
+                borderColor: newColor,
+                data: data,
+                fill: false
+            };
+
+            for (var index = 0; index < config.data.labels.length; ++index) {
+                newDataset.data.push(randomScalingFactor());
+            }
+
+            config.data.datasets.push(newDataset);
+            window.myLine.update();
+        });
+
+        document.getElementById('addData').addEventListener('click', function() {
+            if (config.data.datasets.length > 0) {
+                 var month = "";
+                 config.data.labels.push(month);
+
+                config.data.datasets.forEach(function(dataset) {
+                    dataset.data.push(randomScalingFactor());
+                });
+
+                window.myLine.update();
+            }
+        });
+
+        document.getElementById('removeDataset').addEventListener('click', function() {
+            config.data.datasets.splice(0, 1);
+            window.myLine.update();
+        });
+
+        document.getElementById('removeData').addEventListener('click', function() {
+            config.data.labels.splice(-1, 1); // remove the label first
+
+            config.data.datasets.forEach(function(dataset, datasetIndex) {
+                dataset.data.pop();
+            });
+
+            window.myLine.update();
+        });
+        data = [
+          -.99999,
+        .99999,
+        -.99998,
+        .99997,
+        -.99996,
+        .99995,
+        -.99993,
+        .99991,
+        -.99989,
+        .99987,
+        -.99984,
+        .99981,
+        -.99978,
+        .99975,
+        -.99971,
+        .99967,
+        -.99963,
+        .99958,
+        -.99954,
+        .99949,
+        -.99944,
+        .99938,
+        -.99932,
+        .99926,
+        -.99920,
+        .99914,
+        -.99907,
+        .99900,
+        -.99893,
+        .99885,
+        -.99878,
+        .99870,
+        -.99861,
+        .99853,
+        -.99844,
+        .99835,
+        -.99826,
+        .99816,
+        -.99807,
+        .99797,
+        -.99786,
+        .99776,
+        -.99765,
+        .99754,
+        -.99743,
+        .99731,
+        -.99719,
+        .99707,
+        -.99695,
+        .99683,
+        -.99670,
+        .99657,
+        -.99643,
+        .99630,
+        -.99616,
+        .99602,
+        -.99588,
+        .99573,
+        -.99558,
+        .99543,
+        -.99528,
+        .99512,
+        -.99497,
+        .99480,
+        -.99464,
+        .99448,
+        -.99431,
+        .99414,
+        -.99396,
+        .99379,
+        -.99361,
+        .99343,
+        -.99324,
+        .99306,
+        -.99287,
+        .99268,
+        -.99248,
+        .99229,
+        -.99209,
+        .99189,
+        -.99169,
+        .99148,
+        -.99127,
+        .99106,
+        -.99085,
+        .99063,
+        -.99041,
+        .99019,
+        -.98997,
+        .98974,
+        -.98951,
+        .98928,
+        -.98905,
+        .98881,
+        -.98857,
+        .98833,
+        -.98809,
+        .98784,
+        -.98759,
+        .98734
+];
+
+    </script>
+</body>
+
+
+</html>
