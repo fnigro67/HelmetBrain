@@ -7,7 +7,7 @@
     <link rel="icon" href="../../../../favicon.ico">
     <script src = "scripts/utils.js"></script>
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Helmet Brain</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -41,7 +41,7 @@
   </head>
 
   <body>
-    
+
 
     <div class="container-fluid">
       <div class="row">
@@ -51,13 +51,13 @@
               <li class="nav-item">
                 <a class="nav-link active" href="#">
                   <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
+                  Home <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
-                  Orders
+                  Messaggi
                 </a>
               </li>
               <li class="nav-item">
@@ -124,25 +124,14 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                This week
-              </button>
-            </div>
+
           </div>
 
           <canvas class="my-4" id="canvas" width="900" height="380"></canvas>
 
-          <h2>Section title</h2>
+
           <div class="table-responsive">
-            <div style="width:75%;">
-                <canvas id="canvas"></canvas>
-            </div>
+
 
 
             <div id="map"></div>
@@ -242,7 +231,7 @@
         };
 
         window.onload = function() {
-            var ctx = document.getElementById("canvas").getContext("2d");
+            var ctx = document.getElementById("chartHours").getContext("2d");
             window.myLine = new Chart(ctx, config);
         };
 
