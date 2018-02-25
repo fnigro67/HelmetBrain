@@ -1,6 +1,10 @@
 type = ['','info','success','warning','danger'];
 
-
+var dataSales,
+optionsSales,
+responsiveSales,
+dataPreferences,
+optionsPreferences;
 
 demo = {
 
@@ -26,7 +30,7 @@ demo = {
 
     initChartist: function(){//fine riga 209
 
-        var dataSales = {
+         dataSales = {
           labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'], //tavoli di ordine
           series: [[-.99999,
         .99999,
@@ -130,7 +134,7 @@ demo = {
         .98734]] //serie di dati da inserire
         };
 
-        var optionsSales = {
+         optionsSales = {
           lineSmooth: false,
           low: -1,
           high: 1,
@@ -146,7 +150,7 @@ demo = {
           showPoint: true,
         };
 
-        var responsiveSales = [
+         responsiveSales = [
           ['screen and (max-width: 640px)', {
             axisX: {
               labelInterpolationFnc: function (value) {
@@ -163,13 +167,13 @@ demo = {
 
 
 
-        var dataPreferences = {
+        dataPreferences = {
             series: [
                 [25, 30, 20, 25]
             ]
         };
 
-        var optionsPreferences = {
+        optionsPreferences = {
             donut: true,
             donutWidth: 40,
             startAngle: 0,
