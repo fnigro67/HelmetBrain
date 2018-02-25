@@ -17,7 +17,7 @@ demo = {
     },
 
     //QUI SI PUO MODIFICA
-    
+
     initChartist: function(){
 
         var dataSales = {
@@ -151,7 +151,7 @@ demo = {
         ];
 
         Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
-
+        Chartist.Line('#chartImpact', dataSales, optionsSales, responsiveSales);
 
         var data = {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
