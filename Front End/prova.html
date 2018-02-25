@@ -230,10 +230,7 @@
             }
         };
 
-        window.onload = function() {
-            var ctx = document.getElementById("chartHours").getContext("2d");
-            window.myLine = new Chart(ctx, config);
-        };
+        
 
         document.getElementById('randomizeData').addEventListener('click', function() {
             config.data.datasets.forEach(function(dataset) {

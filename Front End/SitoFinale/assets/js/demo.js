@@ -1,7 +1,11 @@
 type = ['','info','success','warning','danger'];
 
 
+
 demo = {
+
+
+
     initPickColor: function(){
         $('.pick-class-label').click(function(){
             var new_class = $(this).attr('new-class');
@@ -16,9 +20,11 @@ demo = {
         });
     },
 
+
+
     //QUI SI PUO MODIFICA
 
-    initChartist: function(){
+    initChartist: function(){//fine riga 209
 
         var dataSales = {
           labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'], //tavoli di ordine
@@ -150,37 +156,12 @@ demo = {
           }]
         ];
 
-        Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
+        Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales); //mental waves
         Chartist.Line('#chartImpact', dataSales, optionsSales, responsiveSales);
 
-        var data = {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          series: [
-            [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-            [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
-          ]
-        };
 
-        var options = {
-            seriesBarDistance: 10,
-            axisX: {
-                showGrid: false
-            },
-            height: "245px"
-        };
 
-        var responsiveOptions = [
-          ['screen and (max-width: 640px)', {
-            seriesBarDistance: 5,
-            axisX: {
-              labelInterpolationFnc: function (value) {
-                return value[0];
-              }
-            }
-          }]
-        ];
 
-        Chartist.Bar('#chartActivity', data, options, responsiveOptions);
 
         var dataPreferences = {
             series: [
@@ -227,7 +208,7 @@ demo = {
         marker.setMap(map);
     },
 
-	showNotification: function(from, align){
+	  showNotification: function(from, align){
     	color = Math.floor((Math.random() * 4) + 1);
 
     	$.notify({
