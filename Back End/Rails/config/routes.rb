@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   # ajax
 
   # Gps listener
-  post '/gps', to: 'gps#push'
-  get '/gps', to: 'gps#push'
+  post '/clients', to: 'clients#update'
+  get '/clients', to: 'clients#all'
 
   # Channels
 end
