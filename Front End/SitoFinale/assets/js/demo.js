@@ -1,16 +1,19 @@
 type = ['','info','success','warning','danger'];
 
-var dataSales,
-optionsSales,
+var brainDati,
+optionsBrainWaves,
 responsiveSales,
 dataPreferences,
-optionsPreferences;
+optionsPreferences,
+impactDati,
+optionsBrainImpact;
 
-demo = {
 
 
 
-    initPickColor: function(){
+
+    function initPickColor()
+    {
         $('.pick-class-label').click(function(){
             var new_class = $(this).attr('new-class');
             var old_class = $('#display-buttons').attr('data-class');
@@ -22,15 +25,24 @@ demo = {
             display_div.attr('data-class', new_class);
             }
         });
-    },
+    }
 
 
 
     //QUI SI PUO MODIFICA
 
-    initChartist: function(){//fine riga 209
+    function initCerebralWaves()
+    {//fine riga 209
 
-         dataSales = {
+        impactDati ={
+         labels: [], //tavoli di ordine
+        series: [[]
+      ] //serie di dati da inserire series[0 ] series[1]
+      };
+
+
+
+         brainDati = {
           labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'], //tavoli di ordine
           series: [[-.99999,
         .99999,
@@ -131,10 +143,11 @@ demo = {
         -.98809,
         .98784,
         -.98759,
-        .98734]] //serie di dati da inserire
+        .98734]
+        ] //serie di dati da inserire series[0 ] series[1]
         };
 
-         optionsSales = {
+         optionsBrainWaves = {
           lineSmooth: false,
           low: -1,
           high: 1,
@@ -160,8 +173,24 @@ demo = {
           }]
         ];
 
-        Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales); //mental waves
-        Chartist.Line('#chartImpact', dataSales, optionsSales, responsiveSales);
+        optionsBrainImpact = {
+         lineSmooth: true,
+         low: 0,
+         high: 1500,
+         showArea: false,
+         height: "245px",
+         axisX: {
+           showGrid: true,
+         },
+         lineSmooth: Chartist.Interpolation.simple({
+           divisor: 2
+         }),
+         showLine: true,
+         showPoint: true,
+       };
+
+        Chartist.Line('#chartHours', brainDati, optionsBrainWaves, responsiveSales); //mental waves
+        Chartist.Line('#chartImpact', impactDati, optionsBrainImpact, responsiveSales);
 
 
 
@@ -190,9 +219,10 @@ demo = {
           labels: ['62%','32%','6%'],
           series: [62, 32, 6]
         });
-    },
+    }
 
-    initGoogleMaps: function(){
+    function initGoogleMaps()
+    {
         var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
         var mapOptions = {
           zoom: 13,
@@ -210,9 +240,10 @@ demo = {
 
         // To add the marker to the map, call setMap();
         marker.setMap(map);
-    },
+    }
 
-	  showNotification: function(from, align){
+	  function showNotification(from, align)
+    {
     	color = Math.floor((Math.random() * 4) + 1);
 
     	$.notify({
@@ -227,7 +258,48 @@ demo = {
                 align: align
             }
         });
-	}
+	  }
+/*
+*
+*                           NEW
+*/
+//sensore onde cerebrali
+    function addDataCerebralWaves(value)
+    {
+        brainDati.series[0].push(value);
+        brainDati.labels.push(brainDati.labels[brainDati.series[0].length % 8])
+        if(brainDati.series[0].length > 150)
+        {
 
+          brainDati.series[0].shift(100);
+          brainDati.labels.shift(100);
+          Chartist.Line('#chartImpact', brainDati, optionsBrainWaves, responsiveSales);
+        }
+        Chartist.Line('#chartHours', brainDati, optionsBrainWaves, responsiveSales);
+    }
+    var valueCounter = 0;
+//sensore impatto
+    function addDataImpact(value)
+    {
+      valueCounter++;
+      impactDati.series[0].push(value);
+      impactDati.labels.push(valueCounter);
+      if(impactDati.series[0].length > 50)
+      {
 
+        impactDati.series[0].shift(200);
+        impactDati.labels.shift(100);
+        Chartist.Line('#chartImpact', impactDati, optionsBrainImpact, responsiveSales);
+      }
+      Chartist.Line('#chartImpact', impactDati, optionsBrainImpact, responsiveSales);
+
+    }
+
+    function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }
