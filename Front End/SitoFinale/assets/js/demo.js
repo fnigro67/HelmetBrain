@@ -302,4 +302,10 @@ optionsBrainImpact;
       break;
     }
   }
+
+
+  //var start = Date.now();
+//setInterval(function() {addDataCerebralWaves(Math.floor((Math.random() *1)-1)); console.log(brainDati.series.length);
+  //  addDataImpact(Math.floor((Math.random() * 1400) + 1));
+//}, 40); // update about every second
 }
