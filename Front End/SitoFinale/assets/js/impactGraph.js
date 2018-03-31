@@ -61,7 +61,6 @@ chart([0, n - 1], function tick(path, area, data, x) {
         // .attr("transform", null)
       // .transition()
         // .attr("transform", "translate(" + x(0) + ")");
-        console.log(x(0))
 
     // pop the old data point off the front
     data.shift();
